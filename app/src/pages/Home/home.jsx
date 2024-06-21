@@ -1,7 +1,7 @@
 import React from 'react'
 import DashBoard from '../../components/DashBoard'
 import NavigationBar from '../../components/NavigationBar'
-const home = () => {
+const Home = () => {
   return (
     <div className='w-full flex'>
       <NavigationBar/>  
@@ -13,4 +13,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
