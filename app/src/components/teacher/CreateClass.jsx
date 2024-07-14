@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
 
-const RegistrationForm = () => {
+const CreateClass = () => {
   const [formData, setFormData] = useState({
     className: '',
     section: '',
@@ -72,4 +72,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default CreateClass;

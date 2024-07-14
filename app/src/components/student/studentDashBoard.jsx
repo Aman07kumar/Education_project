@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaBook, FaSchool, FaClipboardList } from 'react-icons/fa';
 
-const DashBoard = () => {
+const StudentDashBoard = () => {
   return (
     <div className="p-4 md:p-10 bg-gray-100 min-h-screen">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -37,4 +37,4 @@ const DashBoard = () => {
   );
 }
 
-export default DashBoard;
+export default StudentDashBoard;

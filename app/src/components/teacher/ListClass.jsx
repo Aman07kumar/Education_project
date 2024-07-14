@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
 import { FaBook } from 'react-icons/fa';
 
-const ConfirmationPage = () => {
+const ListClass = () => {
   const { classes } = useContext(ClassContext);
 
   const handleClassClick = (cls) => {
@@ -44,4 +44,4 @@ const ConfirmationPage = () => {
   );
 };
 
-export default ConfirmationPage;
+export default ListClass;
