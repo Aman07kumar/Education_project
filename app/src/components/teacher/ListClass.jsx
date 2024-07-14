@@ -1,42 +1,61 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
-import { FaBook } from 'react-icons/fa';
+import { FaBook, FaPlus, FaTrashAlt, FaInfoCircle } from 'react-icons/fa';
 
 const ListClass = () => {
-  const { classes } = useContext(ClassContext);
-
-  const handleClassClick = (cls) => {
-    console.log(cls);
-  };
+  const { classes, deleteClass } = useContext(ClassContext);
 
   return (
-    <div className="p-4 md:p-10 bg-gray-100 min-h-screen">
-      <div className="flex justify-end mb-6">
-        <Link to="/teacher/class/create" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">
-          Create New Class
+    <div className="p-6 md:p-12 bg-gray-200 min-h-screen">
+      <div className="flex justify-end mb-8">
+        <Link
+          to="/teacher/class/create"
+          className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+        >
+          <FaPlus />
+          <span>Create New Class</span>
         </Link>
       </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {classes.length === 0 ? (
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg flex items-center justify-center min-h-[200px] col-span-3">
-            <p className="text-lg md:text-xl font-semibold">No classes registered yet.</p>
+          <div className="bg-white p-6 rounded-lg shadow-xl flex items-center justify-center col-span-full">
+            <p className="text-lg font-semibold text-gray-700">No classes registered yet.</p>
           </div>
         ) : (
           classes.map((cls, index) => (
-            <button
+            <div
               key={index}
-              onClick={() => handleClassClick(cls)}
-              className="bg-white p-4 md:p-6 rounded-lg shadow-lg flex items-center min-h-[200px] w-full text-left hover:bg-gray-100 transition-colors duration-300"
+              className="bg-white p-6 rounded-lg shadow-xl flex flex-col items-start space-y-4 transition-transform transform hover:scale-105 hover:shadow-2xl"
             >
-              <div className="p-3 bg-blue-500 rounded-full">
-                <FaBook className="text-white text-2xl md:text-3xl" />
+              <div className="flex items-center space-x-3">
+                <div className="p-3 bg-blue-600 rounded-full">
+                  <FaBook className="text-white text-2xl" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800">{cls.className}</h3>
+                  <p className="text-sm text-gray-500">
+                    <strong>Section:</strong> {cls.section}
+                  </p>
+                </div>
               </div>
-              <div className="ml-4">
-                <h3 className="text-lg md:text-xl font-semibold">{cls.className}</h3>
-                <p className="text-sm md:text-base"><strong>Section:</strong> {cls.section}</p>
+              <div className="flex flex-col space-y-2 w-full">
+                <Link
+                  to={`/teacher/class/${cls.className}/${cls.section}`}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                >
+                  <FaInfoCircle />
+                  <span>View Details</span>
+                </Link>
+                <button
+                  onClick={() => deleteClass(cls.className, cls.section)}
+                  className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                >
+                  <FaTrashAlt />
+                  <span>Delete</span>
+                </button>
               </div>
-            </button>
+            </div>
           ))
         )}
       </div>
