@@ -19,11 +19,11 @@ const CreateClass = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addClass(formData);
-    navigate('/confirmation');
+    navigate('/teacher/class/list');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Class Registration</h2>
         <form onSubmit={handleSubmit} className="space-y-6">

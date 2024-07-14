@@ -15,9 +15,9 @@ const Login = () => {
     const success = login(email, password);
     if (success) {
       if (currentUser.role === "student") {
-        navigate("/student");
+        navigate("/home");
       } else if (currentUser.role === "teacher") {
-        navigate("/teacher");
+        navigate("/home");
       }
     } 
     else{
