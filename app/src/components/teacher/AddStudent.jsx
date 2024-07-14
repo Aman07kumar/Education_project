@@ -23,9 +23,9 @@ const AddStudent = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-40 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
+        <h2 className="text-xl font-semibold mb-4 text-gray-700 flex items-center space-x-2">
           <FaUserPlus />
           <span>Add Student to {className} - {section}</span>
         </h2>
@@ -48,7 +48,7 @@ const AddStudent = ({ onClose }) => {
           />
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full flex items-center space-x-2 justify-center"
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full flex items-center space-x-2 justify-center"
           >
             <FaUserPlus />
             <span>Add Student</span>
@@ -56,7 +56,7 @@ const AddStudent = ({ onClose }) => {
         </form>
         <button
           onClick={onClose}
-          className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full flex items-center space-x-2 justify-center"
+          className="mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full flex items-center space-x-2 justify-center"
         >
           <FaTimes />
           <span>Close</span>
