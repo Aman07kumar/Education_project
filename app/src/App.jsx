@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useContext } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -8,8 +6,10 @@ import Login from './pages/auth/login';
 import CreateClass from './components/teacher/CreateClass';
 import ListClass from './components/teacher/ListClass';
 import AddStudent from './components/teacher/AddStudent';
-import StudentList from './components/teacher/StudentList';
-import ClassDetails from './components/teacher/ClassDetails';  // Import ClassDetails component
+import ClassDetails from './components/teacher/ClassDetails';
+// import AddExam from './components/teacher/AddExam';
+// import ExamList from './components/teacher/ExamList';
+// import EditExam from './components/teacher/EditExam';
 import { ClassProvider } from './Context/ClassContext';
 import StudentDashBoard from './components/student/studentDashBoard';
 import TeacherDashBoard from './components/teacher/teacherDashBoard';
@@ -44,7 +44,9 @@ function App() {
               <Route path="/teacher/class/list" element={<TeacherLayout><ListClass /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section" element={<TeacherLayout><ClassDetails /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/add-student" element={<TeacherLayout><AddStudent /></TeacherLayout>} />
-              <Route path="/teacher/class/:className/:section/students" element={<TeacherLayout><StudentList /></TeacherLayout>} />
+              {/* <Route path="/teacher/class/:className/:section/create-exam" element={<TeacherLayout><AddExam /></TeacherLayout>} />
+              <Route path="/teacher/class/:className/:section/exams" element={<TeacherLayout><ExamList /></TeacherLayout>} />
+              <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} /> */}
             </>
           )}
 
