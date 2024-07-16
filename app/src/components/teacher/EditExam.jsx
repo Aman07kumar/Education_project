@@ -1,36 +1,55 @@
-// components/teacher/AddExam.js
+// components/teacher/EditExam.js
 
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
 
-const AddExam = () => {
-  const { className, section } = useParams();
+const EditExam = () => {
+  const { className, section, examIndex } = useParams();
   const navigate = useNavigate();
-  const { addExam } = useContext(ClassContext);
-  
+  const { classes, updateExam } = useContext(ClassContext);
+  const classDetails = classes.find(cls => cls.className === className && cls.section === section);
+  const exam = classDetails?.exams[examIndex];
+
   const [examName, setExamName] = useState('');
   const [examDate, setExamDate] = useState('');
   const [examDetail, setExamDetail] = useState('');
   const [fullMarks, setFullMarks] = useState('');
 
-  const handleAddExam = () => {
-    const newExam = {
+  useEffect(() => {
+    if (exam) {
+      setExamName(exam.name);
+      setExamDate(exam.date);
+      setExamDetail(exam.detail);
+      setFullMarks(exam.fullMarks);
+    }
+  }, [exam]);
+
+  const handleUpdateExam = () => {
+    const updatedExam = {
       name: examName,
       date: examDate,
       detail: examDetail,
       fullMarks: parseInt(fullMarks),
-      scores: []
+      scores: exam.scores
     };
-    addExam(className, section, newExam);
+    updateExam(className, section, examIndex, updatedExam);
     navigate(`/teacher/class/${className}/${section}/exams`);
   };
+
+  if (!exam) {
+    return (
+      <div className="p-4 md:p-10 bg-gray-100 min-h-screen flex items-center justify-center">
+        <p className="text-lg font-semibold text-gray-700">Exam not found.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 md:p-10 bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Add New Exam</h2>
-        <form onSubmit={(e) => { e.preventDefault(); handleAddExam(); }} className="space-y-4">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Edit Exam</h2>
+        <form onSubmit={(e) => { e.preventDefault(); handleUpdateExam(); }} className="space-y-4">
           <div>
             <label className="block text-gray-700 font-semibold mb-1" htmlFor="examName">Exam Name</label>
             <input
@@ -76,9 +95,9 @@ const AddExam = () => {
           </div>
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300"
           >
-            Add Exam
+            Update Exam
           </button>
         </form>
       </div>
@@ -86,4 +105,4 @@ const AddExam = () => {
   );
 };
 
-export default AddExam;
+export default EditExam;

@@ -7,9 +7,9 @@ import CreateClass from './components/teacher/CreateClass';
 import ListClass from './components/teacher/ListClass';
 import AddStudent from './components/teacher/AddStudent';
 import ClassDetails from './components/teacher/ClassDetails';
-// import AddExam from './components/teacher/AddExam';
-// import ExamList from './components/teacher/ExamList';
-// import EditExam from './components/teacher/EditExam';
+import AddExam from './components/teacher/AddExam';
+import ExamList from './components/teacher/ExamList';
+import EditExam from './components/teacher/EditExam';
 import { ClassProvider } from './Context/ClassContext';
 import StudentDashBoard from './components/student/studentDashBoard';
 import TeacherDashBoard from './components/teacher/teacherDashBoard';
@@ -31,9 +31,7 @@ function App() {
           
           {/* Routes for student */}
           {currentUser && currentUser.role === 'student' && (
-            <>
-              <Route path="/home" element={<StudentLayout><StudentDashBoard /></StudentLayout>} />
-            </>
+            <Route path="/home" element={<StudentLayout><StudentDashBoard /></StudentLayout>} />
           )}
 
           {/* Routes for teacher */}
@@ -44,9 +42,9 @@ function App() {
               <Route path="/teacher/class/list" element={<TeacherLayout><ListClass /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section" element={<TeacherLayout><ClassDetails /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/add-student" element={<TeacherLayout><AddStudent /></TeacherLayout>} />
-              {/* <Route path="/teacher/class/:className/:section/create-exam" element={<TeacherLayout><AddExam /></TeacherLayout>} />
+              <Route path="/teacher/class/:className/:section/add-exam" element={<TeacherLayout><AddExam /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams" element={<TeacherLayout><ExamList /></TeacherLayout>} />
-              <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} /> */}
+              <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} />
             </>
           )}
 

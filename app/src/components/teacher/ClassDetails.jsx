@@ -1,15 +1,14 @@
+// components/teacher/ClassDetails.js
 import React, { useContext, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
 import AddStudent from './AddStudent';
-import AddExam from './AddExam';
 import { FaPlus, FaArrowLeft, FaTrashAlt } from 'react-icons/fa';
 
 const ClassDetails = () => {
   const { className, section } = useParams();
-  const { classes, deleteStudent, addExam } = useContext(ClassContext);
+  const { classes, deleteStudent } = useContext(ClassContext);
   const [showAddStudent, setShowAddStudent] = useState(false);
-  const [showAddExam, setShowAddExam] = useState(false);
 
   const classDetails = classes.find(cls => cls.className === className && cls.section === section);
 
@@ -20,11 +19,6 @@ const ClassDetails = () => {
       </div>
     );
   }
-
-  const handleAddExam = (newExam) => {
-    addExam(className, section, newExam);
-    setShowAddExam(false);
-  };
 
   return (
     <div className="p-4 md:p-10 bg-gray-100 min-h-screen">
@@ -43,13 +37,13 @@ const ClassDetails = () => {
           <FaPlus className="mr-2" />
           <span>Add Student</span>
         </button>
-        <button
-          onClick={() => setShowAddExam(true)}
+        <Link
+          to={`/teacher/class/${className}/${section}/exams`}
           className="flex items-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300"
         >
           <FaPlus className="mr-2" />
-          <span>Add Exam</span>
-        </button>
+          <span>View Exams</span>
+        </Link>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
@@ -84,12 +78,6 @@ const ClassDetails = () => {
         <AddStudent
           classData={classDetails}
           onClose={() => setShowAddStudent(false)}
-        />
-      )}
-      {showAddExam && (
-        <AddExam
-          classData={classDetails}
-          onClose={() => setShowAddExam(false)}
         />
       )}
     </div>
