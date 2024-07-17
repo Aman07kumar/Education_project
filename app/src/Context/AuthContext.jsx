@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import users from '../Dummy/users.json'; // Import your dummy data
 
 const AuthContext = createContext({
@@ -9,7 +9,16 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  // Initialize currentUser from session storage
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = sessionStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  // Update session storage whenever currentUser changes
+  useEffect(() => {
+    sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+  }, [currentUser]);
 
   const login = (email, password) => {
     const user = users.find(u => u.email === email && u.password === password);
@@ -28,6 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    sessionStorage.removeItem('currentUser'); 
     setCurrentUser(null);
   };
 

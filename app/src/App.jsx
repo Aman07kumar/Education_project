@@ -12,7 +12,7 @@ import ExamList from './components/teacher/ExamList';
 import EditExam from './components/teacher/EditExam';
 import { ClassProvider } from './Context/ClassContext';
 import StudentDashBoard from './components/student/studentDashBoard';
-import TeacherDashBoard from './components/teacher/teacherDashBoard';
+import TeacherDashBoard from './components/teacher/TeacherDashBoard';
 import AuthContext from './Context/AuthContext';
 import StudentLayout from './components/student/StudentLayout';
 import TeacherLayout from './components/teacher/TeacherLayout';
