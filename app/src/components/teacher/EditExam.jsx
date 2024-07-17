@@ -33,7 +33,7 @@ const EditExam = () => {
       fullMarks: parseInt(fullMarks),
       scores: exam.scores
     };
-    updateExam(className, section, examIndex, updatedExam);
+    updateExam(className, section, parseInt(examIndex), updatedExam);  // Ensure examIndex is parsed as integer
     navigate(`/teacher/class/${className}/${section}/exams`);
   };
 
