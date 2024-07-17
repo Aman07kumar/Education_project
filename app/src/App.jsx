@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './pages/auth/signup';
 import Login from './pages/auth/login';
 import CreateClass from './components/teacher/CreateClass';
-import ListClass from './components/teacher/ListClass';
+import ListClass from './components/teacher/ClassList';
 import AddStudent from './components/teacher/AddStudent';
 import ClassDetails from './components/teacher/ClassDetails';
 import AddExam from './components/teacher/AddExam';
@@ -17,6 +17,7 @@ import AuthContext from './Context/AuthContext';
 import StudentLayout from './components/student/StudentLayout';
 import TeacherLayout from './components/teacher/TeacherLayout';
 import Home from './pages/homePage/home';
+import ClassListExam from './components/teacher/ClassListExam';
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -45,6 +46,7 @@ function App() {
               <Route path="/teacher/class/:className/:section/add-exam" element={<TeacherLayout><AddExam /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams" element={<TeacherLayout><ExamList /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} />
+              <Route path="/teacher/exam/list" element={<TeacherLayout><ClassListExam/></TeacherLayout>} />
             </>
           )}
 

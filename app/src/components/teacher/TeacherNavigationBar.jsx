@@ -30,7 +30,7 @@ const TeacherNavigationBar = () => {
         <button onClick={() => navigate('/teacher/class/create')} className="nav-button text-left">Create Class</button>
         <button onClick={() => navigate('/#')} className="nav-button text-left">Subject List</button>
         <button onClick={() => navigate('/teacher/class/list')} className="nav-button text-left">View Classes</button>
-        <button onClick={() => navigate('/#')} className="nav-button text-left">Exams</button>
+        <button onClick={() => navigate('/teacher/exam/list')} className="nav-button text-left">Exams</button>
       </nav>
 
       {currentUser && (

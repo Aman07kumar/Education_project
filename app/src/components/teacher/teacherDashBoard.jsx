@@ -24,7 +24,7 @@ const TeacherDashBoard = () => {
             <p className="text-3xl md:text-4xl font-bold">12</p>
           </div>
         </Link>
-        <Link to='/' className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center min-h-[200px]">
+        <Link to='/teacher/exam/list' className="bg-white p-4 md:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center min-h-[200px]">
           <div className="p-3 bg-red-500 rounded-full">
             <FaClipboardList className="text-white text-2xl md:text-3xl" />
           </div>
