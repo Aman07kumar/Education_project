@@ -60,8 +60,22 @@ const ClassProvider = ({ children }) => {
     ));
   };
 
+  const addScore = (className, section, scores, totalMarks) => {
+    setClasses(classes.map(cls => 
+      cls.className === className && cls.section === section 
+      ? {
+          ...cls,
+          students: cls.students.map(student => {
+            const score = scores.find(s => s.rollNumber === student.rollNumber);
+            return score ? { ...student, score: Number(score.score) } : student;
+          })
+        } 
+      : cls
+    ));
+  };
+
   return (
-    <ClassContext.Provider value={{ classes, addClass, updateClass, deleteClass, addStudent, deleteStudent, addExam, updateExam, deleteExam }}>
+    <ClassContext.Provider value={{ classes, addClass, updateClass, deleteClass, addStudent, deleteStudent, addExam, updateExam, deleteExam, addScore }}>
       {children}
     </ClassContext.Provider>
   );

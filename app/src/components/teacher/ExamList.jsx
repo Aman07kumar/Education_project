@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaPlus } from 'react-icons/fa';
 
 const ExamList = () => {
   const { className, section } = useParams();
@@ -47,10 +47,17 @@ const ExamList = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{exam.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{exam.date}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 truncate">{exam.detail}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center justify-end space-x-3">
+                      <Link
+                        to={`/teacher/class/${className}/${section}/add-score`}
+                        className="flex items-center text-blue-600 hover:text-blue-900"
+                      >
+                        <FaPlus className="inline-block mr-1" />
+                        <span>Add Score</span>
+                      </Link>
                       <Link
                         to={`/teacher/class/${className}/${section}/exams/${index}`}
-                        className="text-yellow-600 hover:text-yellow-900 mr-3"
+                        className="text-yellow-600 hover:text-yellow-900"
                       >
                         <FaEdit className="inline-block" />
                       </Link>

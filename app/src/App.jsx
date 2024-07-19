@@ -10,6 +10,7 @@ import ClassDetails from './components/teacher/ClassDetails';
 import AddExam from './components/teacher/AddExam';
 import ExamList from './components/teacher/ExamList';
 import EditExam from './components/teacher/EditExam';
+import AddScore from './components/teacher/AddScore'; // Import AddScore
 import { ClassProvider } from './Context/ClassContext';
 import StudentDashBoard from './components/student/studentDashBoard';
 import TeacherDashBoard from './components/teacher/teacherDashBoard';
@@ -45,6 +46,7 @@ function App() {
               <Route path="/teacher/class/:className/:section/add-exam" element={<TeacherLayout><AddExam /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams" element={<TeacherLayout><ExamList /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} />
+              <Route path="/teacher/class/:className/:section/add-score" element={<TeacherLayout><AddScore /></TeacherLayout>} /> {/* New route */}
               <Route path="/teacher/exam/list" element={<TeacherLayout><ClassList showExamLink={false} /></TeacherLayout>} />
             </>
           )}

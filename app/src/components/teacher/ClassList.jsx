@@ -1,3 +1,5 @@
+// components/teacher/ClassList.js
+
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
@@ -12,31 +14,31 @@ const ClassList = ({ showExamLink }) => {
         <div className="flex justify-end mb-8">
           <Link
             to="/teacher/class/create"
-            className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+            className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-5 rounded-lg shadow-lg transition-transform transform hover:scale-105 flex items-center space-x-2"
           >
-            <FaPlus />
+            <FaPlus className="text-lg" />
             <span>Create New Class</span>
           </Link>
         </div>
       )}
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {classes.length === 0 ? (
-          <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-center col-span-full">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center col-span-full">
             <p className="text-lg font-semibold text-gray-600">No classes registered yet.</p>
           </div>
         ) : (
           classes.map((cls, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-start space-y-4 transition-transform transform hover:scale-105 hover:shadow-lg"
+              className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-start space-y-4 transition-transform transform hover:scale-105 hover:shadow-xl"
             >
               <div className="flex items-center space-x-3">
-                <div className="p-3 bg-blue-400 rounded-full">
+                <div className="p-3 bg-blue-500 rounded-full">
                   <FaBook className="text-white text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-700">{cls.className}</h3>
-                  <p className="text-sm text-gray-500">
+                  <h3 className="text-2xl font-semibold text-gray-800">{cls.className}</h3>
+                  <p className="text-sm text-gray-600">
                     <strong>Section:</strong> {cls.section}
                   </p>
                 </div>
@@ -46,25 +48,25 @@ const ClassList = ({ showExamLink }) => {
                   <>
                     <Link
                       to={`/teacher/class/${cls.className}/${cls.section}`}
-                      className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
                     >
-                      <FaInfoCircle />
+                      <FaInfoCircle className="text-lg" />
                       <span>View Details</span>
                     </Link>
                     <button
                       onClick={() => deleteClass(cls.className, cls.section)}
                       className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
                     >
-                      <FaTrashAlt />
+                      <FaTrashAlt className="text-lg" />
                       <span>Delete</span>
                     </button>
                   </>
                 ) : (
                   <Link
                     to={`/teacher/class/${cls.className}/${cls.section}/exams`}
-                    className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
                   >
-                    <FaInfoCircle />
+                    <FaInfoCircle className="text-lg" />
                     <span>View Exams</span>
                   </Link>
                 )}

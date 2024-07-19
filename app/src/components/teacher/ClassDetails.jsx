@@ -93,27 +93,6 @@ const ClassDetails = () => {
             </div>
           )}
         </div>
-        <div>
-          <h3 className="text-xl font-bold mb-2 text-gray-800">Exams</h3>
-          {classDetails.exams.length === 0 ? (
-            <p className="text-lg text-center text-gray-600">No exams added yet.</p>
-          ) : (
-            <ul className="space-y-2">
-              {classDetails.exams.map((exam, index) => (
-                <li
-                  key={index}
-                  className="p-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm hover:bg-gray-100 transition-colors duration-300"
-                >
-                  <div>
-                    <span className="font-semibold text-gray-800">{exam.name}</span> -{' '}
-                    <span className="text-gray-600">{exam.date}</span>
-                  </div>
-                  <p className="text-gray-600">{exam.detail}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
       </div>
       {showAddStudent && (
         <AddStudent
