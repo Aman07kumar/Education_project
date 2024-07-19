@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom';
 import { ClassContext } from '../../Context/ClassContext';
 import { FaBook, FaPlus, FaTrashAlt, FaInfoCircle } from 'react-icons/fa';
 
-const ListClass = () => {
+const ClassList = ({ showExamLink }) => {
   const { classes, deleteClass } = useContext(ClassContext);
 
   return (
     <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
-      <div className="flex justify-end mb-8">
-        <Link
-          to="/teacher/class/create"
-          className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
-        >
-          <FaPlus />
-          <span>Create New Class</span>
-        </Link>
-      </div>
+      {showExamLink && (
+        <div className="flex justify-end mb-8">
+          <Link
+            to="/teacher/class/create"
+            className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+          >
+            <FaPlus />
+            <span>Create New Class</span>
+          </Link>
+        </div>
+      )}
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {classes.length === 0 ? (
           <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-center col-span-full">
@@ -40,20 +42,32 @@ const ListClass = () => {
                 </div>
               </div>
               <div className="flex flex-col space-y-2 w-full">
-                <Link
-                  to={`/teacher/class/${cls.className}/${cls.section}`}
-                  className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
-                >
-                  <FaInfoCircle />
-                  <span>View Details</span>
-                </Link>
-                <button
-                  onClick={() => deleteClass(cls.className, cls.section)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
-                >
-                  <FaTrashAlt />
-                  <span>Delete</span>
-                </button>
+                {showExamLink ? (
+                  <>
+                    <Link
+                      to={`/teacher/class/${cls.className}/${cls.section}`}
+                      className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                    >
+                      <FaInfoCircle />
+                      <span>View Details</span>
+                    </Link>
+                    <button
+                      onClick={() => deleteClass(cls.className, cls.section)}
+                      className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                    >
+                      <FaTrashAlt />
+                      <span>Delete</span>
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to={`/teacher/class/${cls.className}/${cls.section}/exams`}
+                    className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center space-x-2"
+                  >
+                    <FaInfoCircle />
+                    <span>View Exams</span>
+                  </Link>
+                )}
               </div>
             </div>
           ))
@@ -63,4 +77,4 @@ const ListClass = () => {
   );
 };
 
-export default ListClass;
+export default ClassList;

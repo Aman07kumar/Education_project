@@ -8,17 +8,21 @@ const AddStudent = ({ onClose }) => {
   const { addStudent } = useContext(ClassContext);
 
   const [studentName, setStudentName] = useState('');
+  const [gender, setGender] = useState('');
   const [rollNumber, setRollNumber] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!studentName || !rollNumber) {
-      alert('Please enter both name and roll number.');
+    if (!studentName || !gender || !rollNumber || !email) {
+      alert('Please fill out all fields.');
       return;
     }
-    addStudent(className, section, { name: studentName, rollNumber });
+    addStudent(className, section, { name: studentName, gender, rollNumber, email });
     setStudentName('');
+    setGender('');
     setRollNumber('');
+    setEmail('');
     onClose();
   };
 
@@ -38,11 +42,30 @@ const AddStudent = ({ onClose }) => {
             className="border border-gray-300 p-2 rounded w-full mb-4"
             required
           />
+          <select
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="border border-gray-300 p-2 rounded w-full mb-4"
+            required
+          >
+            <option value="" disabled>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
           <input
             type="text"
             value={rollNumber}
             onChange={(e) => setRollNumber(e.target.value)}
             placeholder="Enter roll number"
+            className="border border-gray-300 p-2 rounded w-full mb-4"
+            required
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email"
             className="border border-gray-300 p-2 rounded w-full mb-4"
             required
           />
