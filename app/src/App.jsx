@@ -13,11 +13,12 @@ import EditExam from './components/teacher/EditExam';
 import AddScore from './components/teacher/AddScore'; // Import AddScore
 import { ClassProvider } from './Context/ClassContext';
 import StudentDashBoard from './components/student/studentDashBoard';
-import TeacherDashBoard from './components/teacher/teacherDashBoard';
+import TeacherDashBoard from './components/teacher/TeacherDashBoard';
 import AuthContext from './Context/AuthContext';
 import StudentLayout from './components/student/StudentLayout';
 import TeacherLayout from './components/teacher/TeacherLayout';
 import Home from './pages/homePage/home';
+import ExamAnalysisList from './components/teacher/examAnalysis/ExamAnalysisList';
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -47,7 +48,9 @@ function App() {
               <Route path="/teacher/class/:className/:section/exams" element={<TeacherLayout><ExamList /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/exams/:examIndex" element={<TeacherLayout><EditExam /></TeacherLayout>} />
               <Route path="/teacher/class/:className/:section/add-score" element={<TeacherLayout><AddScore /></TeacherLayout>} /> {/* New route */}
+              <Route path="/teacher/class/:className/:section/exams/:examName/analysis" element={<TeacherLayout><ExamAnalysisList /></TeacherLayout>} />
               <Route path="/teacher/exam/list" element={<TeacherLayout><ClassList showExamLink={false} /></TeacherLayout>} />
+              
             </>
           )}
 
